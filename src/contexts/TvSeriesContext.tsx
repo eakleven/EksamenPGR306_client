@@ -22,9 +22,16 @@ export const TvSeriesProvider: FC = ({children}) =>{
         setTvSeries(_tvSeries)
     }
 
+    const addTvSeries = (newTvSeries: ITvSeries, image: File) =>{
+        TvSeriesService.addTvSeries(newTvSeries, image)
+        setTvSeries([...tvSeries, newTvSeries])
+
+
+    }
+
     return(
         <>
-        <TvSeriesContext.Provider value={{tvSeries}}>
+        <TvSeriesContext.Provider value={{tvSeries, addTvSeries}}>
             {children}
         </TvSeriesContext.Provider>
         </>

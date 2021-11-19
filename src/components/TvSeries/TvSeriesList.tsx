@@ -10,10 +10,10 @@ const TvSeriesList: FC = () => {
     const createTvSeriesList = () =>{
         return tvSeries.map((tvSeries: ITvSeries, key: number) =>{
             return(
-                <article>
+                <article key={key}>
 
                 <h1>{tvSeries.name}</h1>
-                <img src={`https://localhost:5001/images/${tvSeries.image}`}/>
+                <img alt={tvSeries.image} src={`https://localhost:5001/images/${tvSeries.image}`}/>
                 </article>
             )
         })
