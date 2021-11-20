@@ -5,57 +5,51 @@ import { ITvSeries } from '../../interfaces/interface';
 import { TvSeriesContextType } from '../../types/TvSeriesContextType';
 
 const PostTvSeries: FC = () => {
-    const {addTvSeries } = useContext(
-        TvSeriesContext
-    ) as TvSeriesContextType;
+    const { addTvSeries } = useContext(TvSeriesContext) as TvSeriesContextType;
 
-    const [image, setImage] = useState<File>()
+    const [image, setImage] = useState<File>();
 
     const [newTvSeries, setNewTvSeries] = useState<ITvSeries>({
-        name: "", 
-        startYear: "",
-        endYear: "",
-        category: "",
-        image: ""
-})
+        name: '',
+        startYear: '',
+        endYear: '',
+        category: '',
+        image: '',
+    });
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const target = e.currentTarget;
+        const { name } = target;
+        const { value } = target;
+        const { type } = target;
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
-
-        const target = e.currentTarget 
-        const {name} = target
-        const {value} = target
-        const {type} = target
-
-        switch(type){
-            case "text":
-                setNewTvSeries({...newTvSeries, [name]: value})
-            break;
-            case "file":
-                let {files} = target
-                if(files){
-                    setNewTvSeries({...newTvSeries, [name]: files[0].name })
-                    setImage(files[0])
+        switch (type) {
+            case 'text':
+                setNewTvSeries({ ...newTvSeries, [name]: value });
+                break;
+            case 'file':
+                let { files } = target;
+                if (files) {
+                    setNewTvSeries({ ...newTvSeries, [name]: files[0].name });
+                    setImage(files[0]);
                 }
         }
-    }
+    };
 
-    const saveSeries = (e: React.SyntheticEvent) =>{
-        e.preventDefault()
-        console.log(newTvSeries)
+    const saveSeries = (e: React.SyntheticEvent) => {
+        e.preventDefault();
+        console.log(newTvSeries);
 
-        addTvSeries(newTvSeries, image as File)
+        addTvSeries(newTvSeries, image as File);
         const emptyItem: ITvSeries = {
-            name: "",
-            startYear: "",
-            endYear: "",
-            category: "",
-            image: ""
-        }
-        setNewTvSeries(emptyItem)
-    }
-
-
+            name: '',
+            startYear: '',
+            endYear: '',
+            category: '',
+            image: '',
+        };
+        setNewTvSeries(emptyItem);
+    };
 
     return (
         <>
@@ -67,36 +61,36 @@ const PostTvSeries: FC = () => {
                         type='text'
                         placeholder='Enter Name'
                         value={newTvSeries.name}
-                        name="name"
+                        name='name'
                         onChange={handleChange}
                     />
                 </FormGroup>
                 <FormGroup className='mb-3'>
-                    <Form.Label>Address</Form.Label>
+                    <Form.Label>Start year</Form.Label>
                     <Form.Control
                         type='text'
                         placeholder='Enter Adress'
-                        name="startYear"
+                        name='startYear'
                         value={newTvSeries.startYear}
                         onChange={handleChange}
                     />
                 </FormGroup>
                 <FormGroup className='mb-3'>
-                    <Form.Label>Phone number</Form.Label>
+                    <Form.Label>Ending year</Form.Label>
                     <Form.Control
                         type='text'
                         placeholder='Enter end year, or ongoing'
-                        name="endYear"
+                        name='endYear'
                         value={newTvSeries.endYear}
                         onChange={handleChange}
                     />
                 </FormGroup>
                 <FormGroup className='mb-3'>
-                    <Form.Label>Lønn</Form.Label>
+                    <Form.Label>Category</Form.Label>
                     <Form.Control
                         type='text'
                         placeholder='Enter category'
-                        name="category"
+                        name='category'
                         value={newTvSeries.category}
                         onChange={handleChange}
                     />
@@ -106,18 +100,17 @@ const PostTvSeries: FC = () => {
                     <Form.Label>Image</Form.Label>
                     <Form.Control
                         type='file'
-                        name="image"
+                        name='image'
                         placeholder='Enter image'
                         onChange={handleChange}
                     />
                 </FormGroup>
                 <FormGroup>
-
-                    <Form.Select aria-label="Default select example">
+                    <Form.Select aria-label='Default select example'>
                         <option>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option value='1'>One</option>
+                        <option value='2'>Two</option>
+                        <option value='3'>Three</option>
                     </Form.Select>
                 </FormGroup>
 

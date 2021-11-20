@@ -1,17 +1,32 @@
-import React from 'react'
-import PostTvSeries from '../components/TvSeries/PostTvSeries'
-import TvSeriesList from '../components/TvSeries/TvSeriesList'
-import { TvSeriesProvider } from '../contexts/TvSeriesContext'
+import React, { useState } from 'react';
+import { Container, Button, Collapse } from 'react-bootstrap';
+import PostTvSeries from '../components/TvSeries/PostTvSeries';
+import TvSeriesList from '../components/TvSeries/TvSeriesList';
 
 const TvSeries = () => {
-    return (
-        <>
-        <TvSeriesProvider>
-        <PostTvSeries/>
-            <TvSeriesList/>
-        </TvSeriesProvider>
-        </>
-    )
-}
+    const [open, setOpen] = useState(false);
 
-export default TvSeries
+    return (
+        <Container>
+            <div className={'col-md-12 text-center'}>
+                <Button
+                    onClick={() => setOpen(!open)}
+                    variant={'primary'}
+                    size={'lg'}
+                    aria-controls='addTvSeriesForm'
+                    aria-expanded={open}
+                >
+                    Add Tv-series
+                </Button>
+                <Collapse in={open}>
+                    <div id={'addTvSeriesForm'}>
+                        <PostTvSeries />
+                    </div>
+                </Collapse>
+                <TvSeriesList />
+            </div>
+        </Container>
+    );
+};
+
+export default TvSeries;
