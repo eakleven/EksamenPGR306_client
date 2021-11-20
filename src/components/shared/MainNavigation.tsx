@@ -14,6 +14,9 @@ const MainNavigation: FC = () => {
                     <Nav.Link as={Link} to={'/tvseries'}>
                         Tv-series
                     </Nav.Link>
+                    <Nav.Link as={Link} to={'/actors'}>
+                        Actors
+                    </Nav.Link>
                 </Nav>
             </Container>
         </Navbar>

@@ -5,4 +5,13 @@ export interface ITvSeries {
     endYear?: string;
     category?: string;
     image: string;
+    actors?: Array<IActors>
 }
+
+export interface IActors{
+    id?: string;
+    name: string;
+    birthYear?: string;
+    image: string;
+}
+

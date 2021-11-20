@@ -5,6 +5,7 @@ import { Container } from 'react-bootstrap';
 import Home from '../pages/Home';
 import TvSeries from '../pages/TvSeries';
 import TvSeriesDetailedItem from '../components/TvSeries/TvSeriesDetailedItem';
+import Actors from '../pages/Actors';
 
 const Routing: FC = () => {
     return (
@@ -18,6 +19,7 @@ const Routing: FC = () => {
                         path={`/tvSeriesDetails/:id`}
                         element={<TvSeriesDetailedItem />}
                     />
+                    <Route path={'/actors'} element={<Actors />} />
                 </Routes>
             </Container>
         </BrowserRouter>
