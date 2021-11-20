@@ -1,11 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { Form, FormGroup, Button } from 'react-bootstrap';
 import { TvSeriesContext } from '../../contexts/TvSeriesContext';
-import { ITvSeries } from '../../interfaces/interface';
+import { IActors, ITvSeries } from '../../interfaces/interface';
 import { TvSeriesContextType } from '../../types/TvSeriesContextType';
 
-const GiveRole = () => {
-    const { tvSeries } = useContext(TvSeriesContext) as TvSeriesContextType;
+const GiveRole: FC<IActors> = ({ name }) => {
+    const { tvSeries, getTvSeriesById, updateTvSeries } = useContext(
+        TvSeriesContext
+    ) as TvSeriesContextType;
     const [role, setRole] = useState('');
 
     const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -14,7 +16,13 @@ const GiveRole = () => {
 
     const onSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault();
+
         if (role !== 'default') {
+            const newTvSeries: ITvSeries = getTvSeriesById(role);
+            if (!newTvSeries.actors?.includes(name)) {
+                newTvSeries.actors?.push(name);
+                updateTvSeries(newTvSeries);
+            }
         }
     };
 

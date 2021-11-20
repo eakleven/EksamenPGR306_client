@@ -62,7 +62,7 @@ const ActorsDetailedView = () => {
                             </Button>
                             <Collapse in={open}>
                                 <div id={'addRole'}>
-                                    <GiveRole />
+                                    <GiveRole name={actor.name} />
                                 </div>
                             </Collapse>
                         </div>

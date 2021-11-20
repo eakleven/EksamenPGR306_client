@@ -12,6 +12,6 @@ export interface IActors{
     id?: string;
     name: string;
     birthYear?: string;
-    image: string;
+    image?: string;
 }
 

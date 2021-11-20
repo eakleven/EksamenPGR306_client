@@ -35,6 +35,8 @@ export const TvSeriesProvider: FC = ({ children }) => {
     };
 
     const updateTvSeries = (updatedTvSeries: ITvSeries) => {
+        console.log('Kommer til Context' + updatedTvSeries!.actors![0]);
+
         TvSeriesService.changeTvSeries(updatedTvSeries);
     };
 
