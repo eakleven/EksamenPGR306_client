@@ -26,10 +26,28 @@ export const TvSeriesProvider: FC = ({ children }) => {
         return tvSeries.find((tvSeries) => tvSeries.id === id) as ITvSeries;
     };
 
+    const deleteTvSeries = (id: string) => {
+        TvSeriesService.removeTvSeries(id);
+        const newStateArray: ITvSeries[] = tvSeries.filter(
+            (tvSeries) => tvSeries.id != id
+        );
+        setTvSeries(newStateArray);
+    };
+
+    const updateTvSeries = (updatedTvSeries: ITvSeries) => {
+        TvSeriesService.changeTvSeries(updatedTvSeries);
+    };
+
     return (
         <>
             <TvSeriesContext.Provider
-                value={{ tvSeries, addTvSeries, getTvSeriesById }}
+                value={{
+                    tvSeries,
+                    addTvSeries,
+                    getTvSeriesById,
+                    deleteTvSeries,
+                    updateTvSeries,
+                }}
             >
                 {children}
             </TvSeriesContext.Provider>
