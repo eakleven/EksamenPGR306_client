@@ -1,20 +1,18 @@
 import React, { FC, useContext, useState } from 'react';
 import { Form, FormGroup, Button } from 'react-bootstrap';
-import { TvSeriesContext } from '../../contexts/TvSeriesContext';
-import { ITvSeries } from '../../interfaces/interface';
-import { TvSeriesContextType } from '../../types/TvSeriesContextType';
+import { ActorsContext } from '../../contexts/ActorsContext';
 
-const PostTvSeries: FC = () => {
-    const { addTvSeries } = useContext(TvSeriesContext) as TvSeriesContextType;
+import { IActors } from '../../interfaces/interface';
+import { ActorsContextType } from '../../types/ActorsContextType';
+
+const PostActors: FC = () => {
+    const { addActor } = useContext(ActorsContext) as ActorsContextType;
 
     const [image, setImage] = useState<File>();
 
-    const [newTvSeries, setNewTvSeries] = useState<ITvSeries>({
+    const [newActor, setNewActor] = useState<IActors>({
         name: '',
-        startYear: '',
-        endYear: '',
-        category: '',
-        actors: [],
+        birthYear: '',
         image: '',
     });
 
@@ -26,12 +24,12 @@ const PostTvSeries: FC = () => {
 
         switch (type) {
             case 'text':
-                setNewTvSeries({ ...newTvSeries, [name]: value });
+                setNewActor({ ...newActor, [name]: value });
                 break;
             case 'file':
                 let { files } = target;
                 if (files) {
-                    setNewTvSeries({ ...newTvSeries, [name]: files[0].name });
+                    setNewActor({ ...newActor, [name]: files[0].name });
                     setImage(files[0]);
                 }
         }
@@ -39,65 +37,40 @@ const PostTvSeries: FC = () => {
 
     const saveSeries = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        console.log(newTvSeries);
 
-        addTvSeries(newTvSeries, image as File);
-        const emptyItem: ITvSeries = {
+        addActor(newActor, image as File);
+        const emptyItem: IActors = {
             name: '',
-            startYear: '',
-            endYear: '',
-            category: '',
-            actors: [],
+            birthYear: '',
             image: '',
         };
-        setNewTvSeries(emptyItem);
+        setNewActor(emptyItem);
     };
 
     return (
         <>
-            <h1>Add new tv-series</h1>
+            <h1>Add new actor</h1>
             <Form onSubmit={saveSeries}>
                 <FormGroup className='mb-3'>
                     <Form.Label>Name</Form.Label>
                     <Form.Control
                         type='text'
                         placeholder='Enter Name'
-                        value={newTvSeries.name}
+                        value={newActor.name}
                         name='name'
                         onChange={handleChange}
                     />
                 </FormGroup>
                 <FormGroup className='mb-3'>
-                    <Form.Label>Start year</Form.Label>
+                    <Form.Label>Birth year</Form.Label>
                     <Form.Control
                         type='text'
                         placeholder='Enter Adress'
                         name='startYear'
-                        value={newTvSeries.startYear}
+                        value={newActor.birthYear}
                         onChange={handleChange}
                     />
                 </FormGroup>
-                <FormGroup className='mb-3'>
-                    <Form.Label>Ending year</Form.Label>
-                    <Form.Control
-                        type='text'
-                        placeholder='Enter end year, or ongoing'
-                        name='endYear'
-                        value={newTvSeries.endYear}
-                        onChange={handleChange}
-                    />
-                </FormGroup>
-                <FormGroup className='mb-3'>
-                    <Form.Label>Category</Form.Label>
-                    <Form.Control
-                        type='text'
-                        placeholder='Enter category'
-                        name='category'
-                        value={newTvSeries.category}
-                        onChange={handleChange}
-                    />
-                </FormGroup>
-
                 <FormGroup className='mb-3'>
                     <Form.Label>Image</Form.Label>
                     <Form.Control
@@ -116,4 +89,4 @@ const PostTvSeries: FC = () => {
     );
 };
 
-export default PostTvSeries;
+export default PostActors;

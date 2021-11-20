@@ -1,9 +1,7 @@
 import { createContext, FC, useEffect, useState } from 'react';
-import { IActors, ITvSeries } from '../interfaces/interface';
+import { IActors } from '../interfaces/interface';
 import { ActorsService } from '../services/ActorsService';
-import { TvSeriesService } from '../services/TvSeriesService';
 import { ActorsContextType } from '../types/ActorsContextType';
-import { TvSeriesContextType } from '../types/TvSeriesContextType';
 
 export const ActorsContext = createContext<ActorsContextType | null>(null);
 
@@ -31,7 +29,7 @@ export const ActorsProvider: FC = ({ children }) => {
     const deleteActor = (id: string) => {
         ActorsService.removeActor(id);
         const newStateArray: IActors[] = actors.filter(
-            (actors) => actors.id != id
+            (actors) => actors.id !== id
         );
         setActors(newStateArray);
     };

@@ -5,7 +5,7 @@ export interface ITvSeries {
     endYear?: string;
     category?: string;
     image: string;
-    actors?: Array<IActors>
+    actors?: Array<string>
 }
 
 export interface IActors{

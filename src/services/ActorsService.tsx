@@ -9,6 +9,7 @@ export const ActorsService = (function () {
 
     const getAll = async () => {
         const res = await axios.get(urlToActorsController);
+
         return res.data as IActors[];
     };
 

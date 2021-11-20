@@ -6,6 +6,7 @@ import Home from '../pages/Home';
 import TvSeries from '../pages/TvSeries';
 import TvSeriesDetailedItem from '../components/TvSeries/TvSeriesDetailedItem';
 import Actors from '../pages/Actors';
+import ActorsDetailedView from '../components/Actors/ActorsDetailedView';
 
 const Routing: FC = () => {
     return (
@@ -20,6 +21,10 @@ const Routing: FC = () => {
                         element={<TvSeriesDetailedItem />}
                     />
                     <Route path={'/actors'} element={<Actors />} />
+                    <Route
+                        path={`/actorDetails/:id`}
+                        element={<ActorsDetailedView />}
+                    />
                 </Routes>
             </Container>
         </BrowserRouter>

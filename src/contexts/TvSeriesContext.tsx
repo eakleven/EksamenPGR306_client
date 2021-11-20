@@ -29,7 +29,7 @@ export const TvSeriesProvider: FC = ({ children }) => {
     const deleteTvSeries = (id: string) => {
         TvSeriesService.removeTvSeries(id);
         const newStateArray: ITvSeries[] = tvSeries.filter(
-            (tvSeries) => tvSeries.id != id
+            (tvSeries) => tvSeries.id !== id
         );
         setTvSeries(newStateArray);
     };

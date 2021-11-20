@@ -1,4 +1,4 @@
-import React, { FC, useContext } from 'react';
+import React, { useContext } from 'react';
 import { ActorsContext } from '../../contexts/ActorsContext';
 import { IActors } from '../../interfaces/interface';
 import { ActorsContextType } from '../../types/ActorsContextType';
@@ -10,7 +10,11 @@ const ActorsList = () => {
         return actors.map((actor: IActors, key: number) => {
             return (
                 <article key={key}>
-                    <ActorItem name={actor.name} image={actor.image} />
+                    <ActorItem
+                        id={actor.id}
+                        name={actor.name}
+                        image={actor.image}
+                    />
                 </article>
             );
         });
