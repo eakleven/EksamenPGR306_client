@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Form, FormGroup, Button } from 'react-bootstrap';
 import { TvSeriesContext } from '../../contexts/TvSeriesContext';
 import { IActors, IProps, ITvSeries } from '../../interfaces/interface';

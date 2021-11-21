@@ -27,7 +27,6 @@ const ActorsDetailedView = () => {
 
     useEffect(() => {
         if (actor) {
-            console.log(actor);
             rolesPlayed();
         }
     }, [actor]);
@@ -36,7 +35,6 @@ const ActorsDetailedView = () => {
         setRoles([]);
         tvSeries.forEach((tvSeries: ITvSeries) => {
             if (tvSeries.actors?.includes(actor!.name)) {
-                console.log(tvSeries.name);
                 setRoles((roles) => [...roles, tvSeries.name]);
             }
         });

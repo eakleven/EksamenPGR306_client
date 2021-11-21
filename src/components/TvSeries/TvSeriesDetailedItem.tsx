@@ -1,7 +1,6 @@
 import { FC, useContext, useEffect, useState } from 'react';
-import { Button, Card, CardGroup, Col, Row } from 'react-bootstrap';
+import { Card, Col, Row } from 'react-bootstrap';
 import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
 import { ActorsContext } from '../../contexts/ActorsContext';
 import { TvSeriesContext } from '../../contexts/TvSeriesContext';
 import { IActors, ITvSeries } from '../../interfaces/interface';
@@ -30,10 +29,6 @@ const TvSeriesDetailedItem: FC = () => {
     useEffect(() => {
         filterActors();
     }, [tvSeries]);
-
-    const onClick = () => {
-        deleteTvSeries(id as string);
-    };
 
     const filterActors = () => {
         const _filteredActors: Array<IActors> = [];

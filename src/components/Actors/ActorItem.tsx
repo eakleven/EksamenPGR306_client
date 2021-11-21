@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react';
-import { Button, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { ActorsContext } from '../../contexts/ActorsContext';
 import { IActors } from '../../interfaces/interface';

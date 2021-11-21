@@ -2,6 +2,7 @@ import React, { FC, useContext, useState } from 'react';
 import { Form, FormGroup, Button } from 'react-bootstrap';
 import { TvSeriesContext } from '../../contexts/TvSeriesContext';
 import { ITvSeries } from '../../interfaces/interface';
+import { TvSeriesService } from '../../services/TvSeriesService';
 import { TvSeriesContextType } from '../../types/TvSeriesContextType';
 
 const PostTvSeries: FC = () => {
@@ -39,7 +40,6 @@ const PostTvSeries: FC = () => {
 
     const saveSeries = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        console.log(newTvSeries);
 
         addTvSeries(newTvSeries, image as File);
         const emptyItem: ITvSeries = {
@@ -51,6 +51,7 @@ const PostTvSeries: FC = () => {
             image: '',
         };
         setNewTvSeries(emptyItem);
+        TvSeriesService.getAll();
     };
 
     return (
@@ -71,7 +72,7 @@ const PostTvSeries: FC = () => {
                     <Form.Label>Start year</Form.Label>
                     <Form.Control
                         type='text'
-                        placeholder='Enter Adress'
+                        placeholder='Enter start year'
                         name='startYear'
                         value={newTvSeries.startYear}
                         onChange={handleChange}

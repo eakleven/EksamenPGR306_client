@@ -3,6 +3,7 @@ import { Form, FormGroup, Button } from 'react-bootstrap';
 import { ActorsContext } from '../../contexts/ActorsContext';
 
 import { IActors } from '../../interfaces/interface';
+import { ActorsService } from '../../services/ActorsService';
 import { ActorsContextType } from '../../types/ActorsContextType';
 
 const PostActors: FC = () => {
@@ -44,7 +45,9 @@ const PostActors: FC = () => {
             birthYear: '',
             image: '',
         };
+
         setNewActor(emptyItem);
+        ActorsService.getAll();
     };
 
     return (

@@ -29,19 +29,3 @@ const TvSeriesList: FC = () => {
 };
 
 export default TvSeriesList;
-
-{
-    /* <Row xs={1} md={2} lg={4}>
-{actors.map((actor: IActors, key: number) => {
-    return (
-        <Col key={key}>
-            <ActorItem
-                id={actor.id}
-                name={actor.name}
-                image={actor.image}
-            />
-        </Col>
-    );
-})}
-</Row> */
-}
