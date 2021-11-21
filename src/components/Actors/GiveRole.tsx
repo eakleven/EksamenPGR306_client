@@ -1,10 +1,12 @@
 import React, { FC, useContext, useState } from 'react';
 import { Form, FormGroup, Button } from 'react-bootstrap';
 import { TvSeriesContext } from '../../contexts/TvSeriesContext';
-import { IActors, ITvSeries } from '../../interfaces/interface';
+import { IActors, IProps, ITvSeries } from '../../interfaces/interface';
 import { TvSeriesContextType } from '../../types/TvSeriesContextType';
 
-const GiveRole: FC<IActors> = ({ name }) => {
+const GiveRole = (props: IActors & IProps) => {
+    const { name, rolesPlayed } = props;
+
     const { tvSeries, getTvSeriesById, updateTvSeries } = useContext(
         TvSeriesContext
     ) as TvSeriesContextType;
@@ -24,6 +26,7 @@ const GiveRole: FC<IActors> = ({ name }) => {
                 updateTvSeries(newTvSeries);
             }
         }
+        rolesPlayed();
     };
 
     return (

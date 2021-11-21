@@ -14,7 +14,7 @@ export const ActorsProvider: FC = ({ children }) => {
 
     const getActors = async () => {
         const _actors = await ActorsService.getAll();
-        setActors(_actors);
+        if (_actors) setActors(_actors);
     };
 
     const addActor = (newActor: IActors, image: File) => {
@@ -36,6 +36,16 @@ export const ActorsProvider: FC = ({ children }) => {
 
     const updateActor = (updatedActor: IActors) => {
         ActorsService.changeActor(updatedActor);
+
+        const indexToUpdate = actors.findIndex(
+            (actor) => actor.id === updatedActor.id
+        );
+        const updatedArray = () => {
+            let newArray = actors;
+            newArray[indexToUpdate] = updateActor;
+            return newArray;
+        };
+        setActors(updatedArray());
     };
 
     return (

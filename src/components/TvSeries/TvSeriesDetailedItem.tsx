@@ -49,7 +49,7 @@ const TvSeriesDetailedItem: FC = () => {
         return (
             <Row xs={1} md={2} lg={4}>
                 {filteredActors.map((actor: IActors, key: number) => (
-                    <Col className={'mt-4'}>
+                    <Col className={'mt-4'} key={key}>
                         <Card style={{ width: '15rem', height: '25rem' }}>
                             <Card.Img
                                 variant='top'
@@ -77,11 +77,6 @@ const TvSeriesDetailedItem: FC = () => {
                             alt={tvSeries.image}
                             src={`https://localhost:5001/images/${tvSeries.image}`}
                         />
-                    </article>
-                    <article>
-                        <Link to={'/tvseries'}>
-                            <Button onClick={onClick}>Delete me</Button>
-                        </Link>
                     </article>
                 </>
             );

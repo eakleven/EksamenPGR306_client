@@ -14,7 +14,7 @@ export const TvSeriesProvider: FC = ({ children }) => {
 
     const getTvSeries = async () => {
         const _tvSeries = await TvSeriesService.getAll();
-        setTvSeries(_tvSeries);
+        if (_tvSeries) setTvSeries(_tvSeries);
     };
 
     const addTvSeries = (newTvSeries: ITvSeries, image: File) => {

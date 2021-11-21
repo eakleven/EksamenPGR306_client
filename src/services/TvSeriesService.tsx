@@ -9,7 +9,11 @@ export const TvSeriesService = (function () {
 
     const getAll = async () => {
         const res = await axios.get(urlToTvSeriesController);
-        return res.data as ITvSeries[];
+        if (res.status.toString() === '200') {
+            return res.data as ITvSeries[];
+        } else {
+            alert(`An error has occured: ${res.status.toString()}`);
+        }
     };
 
     const addTvSeries = (newTvSeries: ITvSeries, image: File) => {

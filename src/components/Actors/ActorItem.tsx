@@ -1,21 +1,29 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
+import { Button, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { ActorsContext } from '../../contexts/ActorsContext';
 import { IActors } from '../../interfaces/interface';
+import { ActorsContextType } from '../../types/ActorsContextType';
 
 const ActorItem: FC<IActors> = ({ id, name, image }) => {
+    const { deleteActor } = useContext(ActorsContext) as ActorsContextType;
     return (
-        <article>
+        <Card>
             <Link
                 to={`/actorDetails/${id}`}
                 style={{ textDecoration: 'none', color: 'black' }}
             >
-                <h1>{name}</h1>
-                <img
+                <Card.Title>{name}</Card.Title>
+                <Card.Img
                     alt={image}
                     src={`https://localhost:5001/images/${image}`}
                 />
             </Link>
-        </article>
+
+            <Button variant='danger' onClick={() => deleteActor(id as string)}>
+                Delete me
+            </Button>
+        </Card>
     );
 };
 

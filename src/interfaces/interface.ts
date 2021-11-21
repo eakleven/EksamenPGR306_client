@@ -15,3 +15,7 @@ export interface IActors{
     image?: string;
 }
 
+export interface IProps{
+    rolesPlayed():void
+}
+

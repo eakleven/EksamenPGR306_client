@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { TvSeriesContext } from '../../contexts/TvSeriesContext';
 import { ITvSeries } from '../../interfaces/interface';
@@ -12,23 +12,24 @@ const TvSeriesItem: FC<ITvSeries> = ({ id, name, image }) => {
 
     return (
         <>
-            <article>
+            <Card>
                 <Link
                     to={`/tvSeriesDetails/${id}`}
                     style={{ textDecoration: 'none', color: 'black' }}
                 >
-                    <h1>{name}</h1>
-                    <img
+                    <Card.Title>{name}</Card.Title>
+                    <Card.Img
                         alt={image}
                         src={`https://localhost:5001/images/${image}`}
                     />
                 </Link>
-            </article>
-            <article>
-                <Button onClick={() => deleteTvSeries(id as string)}>
+                <Button
+                    variant='danger'
+                    onClick={() => deleteTvSeries(id as string)}
+                >
                     Delete me
                 </Button>
-            </article>
+            </Card>
         </>
     );
 };

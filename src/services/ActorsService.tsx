@@ -9,8 +9,11 @@ export const ActorsService = (function () {
 
     const getAll = async () => {
         const res = await axios.get(urlToActorsController);
-
-        return res.data as IActors[];
+        if (res.status.toString() === '200') {
+            return res.data as IActors[];
+        } else {
+            alert(`An error has occured: ${res.status.toString()}`);
+        }
     };
 
     const addActors = (newActors: IActors, image: File) => {

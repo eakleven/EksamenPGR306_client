@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, Collapse } from 'react-bootstrap';
 import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
 import { ActorsContext } from '../../contexts/ActorsContext';
 import { TvSeriesContext } from '../../contexts/TvSeriesContext';
-import { IActors } from '../../interfaces/interface';
+import { IActors, ITvSeries } from '../../interfaces/interface';
 import { ActorsContextType } from '../../types/ActorsContextType';
 import { TvSeriesContextType } from '../../types/TvSeriesContextType';
 import GiveRole from './GiveRole';
@@ -12,12 +11,12 @@ import GiveRole from './GiveRole';
 const ActorsDetailedView = () => {
     const { id } = useParams();
 
-    const { getActorById, deleteActor } = useContext(
-        ActorsContext
-    ) as ActorsContextType;
+    const { getActorById } = useContext(ActorsContext) as ActorsContextType;
+    const { tvSeries } = useContext(TvSeriesContext) as TvSeriesContextType;
 
     const [actor, setActor] = useState<IActors>();
     const [open, setOpen] = useState(false);
+    const [roles, setRoles] = useState<string[]>([]);
 
     useEffect(() => {
         if (id) {
@@ -26,9 +25,32 @@ const ActorsDetailedView = () => {
         }
     }, []);
 
-    const deleteA = () => {
-        console.log('hei');
-        deleteActor(id as string);
+    useEffect(() => {
+        if (actor) {
+            console.log(actor);
+            rolesPlayed();
+        }
+    }, [actor]);
+
+    const rolesPlayed = () => {
+        setRoles([]);
+        tvSeries.forEach((tvSeries: ITvSeries) => {
+            if (tvSeries.actors?.includes(actor!.name)) {
+                console.log(tvSeries.name);
+                setRoles((roles) => [...roles, tvSeries.name]);
+            }
+        });
+    };
+
+    const renderRoles = () => {
+        return (
+            <div>
+                <h2>Have played in the following series:</h2>
+                {roles.map((role: string, key: number) => {
+                    return <h3 key={key}>{role}</h3>;
+                })}
+            </div>
+        );
     };
 
     const renderView = () => {
@@ -37,17 +59,14 @@ const ActorsDetailedView = () => {
                 <>
                     <article>
                         <h1>{actor.name}</h1>
+                        <h2>Born in {actor.birthYear}</h2>
+
+                        {renderRoles()}
+
                         <img
                             alt={actor.image}
                             src={`https://localhost:5001/images/${actor.image}`}
                         />
-                    </article>
-                    <article>
-                        <Link to={'/actors'}>
-                            <Button variant='danger' onClick={deleteA}>
-                                Delete me
-                            </Button>
-                        </Link>
                     </article>
                     <article>
                         <div className={'col-md-12 text-center'}>
@@ -62,7 +81,10 @@ const ActorsDetailedView = () => {
                             </Button>
                             <Collapse in={open}>
                                 <div id={'addRole'}>
-                                    <GiveRole name={actor.name} />
+                                    <GiveRole
+                                        rolesPlayed={rolesPlayed}
+                                        name={actor.name}
+                                    />
                                 </div>
                             </Collapse>
                         </div>
